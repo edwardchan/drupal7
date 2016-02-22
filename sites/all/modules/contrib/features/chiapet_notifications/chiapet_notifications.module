@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Chiapet Notifications feature.
- */
-
-include_once 'chiapet_notifications.features.inc';
