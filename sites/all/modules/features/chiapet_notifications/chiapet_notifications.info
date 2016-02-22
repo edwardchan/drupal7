@@ -5,6 +5,7 @@ dependencies[] = features
 dependencies[] = options
 dependencies[] = taxonomy
 dependencies[] = text
+dependencies[] = views
 features[features_api][] = api:2
 features[field_base][] = body
 features[field_base][] = field_type_of_notification
