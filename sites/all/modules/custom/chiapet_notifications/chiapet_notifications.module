@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Implementation for notifications
+ */
+
+/**
+ * Implements hook_block_info().
+ */
+function chiapet_notifications_block_info() {
+  $blocks = array();
+  $blocks['notifications_block'] = array(
+    'info' => t('Notifications Block'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function chiapet_notifications_block_view($delta = '') {
+  $node_server = nodejs_get_config();
+  $node_server_url = $node_server['nodejs']['scheme'] . '://' . $node_server['nodejs']['host'] . ':' . $node_server['nodejs']['port'];
+
+  $block = array();
+
+  switch ($delta) {
+    case 'notifications_block':
+      $block['subject'] = 'Notifications';
+      $block['content'] = _chiapet_notifications_block_content($node_server_url);
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function chiapet_notifications_theme() {
+  $module_path = drupal_get_path('module', 'chiapet_notifications') . '/templates';
+  return array(
+    'notifications_block' => array(
+      'path' => $module_path,
+      'template' => 'chiapet_notifications',
+      'variables' => array('items' => NULL),
+    );
+  );
+}
+
+/**
+ * Callback for hook_block_view().
+ */
+function _chiapet_notifications_block_content($node_server_url) {
+
+}
