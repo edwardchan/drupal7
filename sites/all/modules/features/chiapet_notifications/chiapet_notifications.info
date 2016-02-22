@@ -1,0 +1,15 @@
+name = Chiapet Notifications
+core = 7.x
+package = Chiapet
+dependencies[] = features
+dependencies[] = options
+dependencies[] = taxonomy
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = field_type_of_notification
+features[field_instance][] = node-notification-body
+features[field_instance][] = node-notification-field_type_of_notification
+features[node][] = notification
+features[taxonomy][] = notification_type
+project path = sites/all/modules/features
