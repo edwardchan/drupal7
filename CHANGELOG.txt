@@ -1,5 +1,8 @@
 
-Drupal 7.42, xxxx-xx-xx (development version)
+Drupal 7.43, xxxx-xx-xx (development version)
+-----------------------
+
+Drupal 7.42, 2016-02-03
 -----------------------
 - Stopped invoking hook_flush_caches() on every cron run, since some modules
   use that hook for expensive operations that are only needed on cache clears.
@@ -23,6 +26,9 @@ Drupal 7.42, xxxx-xx-xx (development version)
   redundant with one in the node preview theme layer.
 - Improved the description of the "Trimmed" format option on text fields
   (translatable string change, and minor UI and data structure change).
+- Numerous small bug fixes.
+- Numerous API documentation improvements.
+- Additional automated test coverage.
 
 Drupal 7.41, 2015-10-21
 -----------------------
