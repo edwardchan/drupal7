@@ -1,0 +1,8 @@
+h2.enabled-sections-title {
+  font-weight: bold;
+}
+
+.block ul.enabled-sections-list {
+  list-style: none;
+  padding: 0;
+}
