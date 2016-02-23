@@ -12,6 +12,7 @@ function chiapet_notifications_block_info() {
   $blocks = array();
   $blocks['notifications_block'] = array(
     'info' => t('Notifications Block'),
+    'cache' => DRUPAL_NO_CACHE,
   );
 
   return $blocks;
@@ -46,13 +47,23 @@ function chiapet_notifications_theme() {
       'path' => $module_path,
       'template' => 'chiapet_notifications',
       'variables' => array('items' => NULL),
-    );
+    ),
   );
+}
+
+function chiapet_notifications_add_javascript() {
+  drupal_add_js(drupal_get_path('module', 'chiapet_notifications') . '/js/bundle.js', array(
+    'scope' => 'footer',
+    'every_page' => TRUE,
+    'group' => JS_THEME,
+    'weight' => 100,
+  ));
 }
 
 /**
  * Callback for hook_block_view().
  */
 function _chiapet_notifications_block_content($node_server_url) {
-
+  chiapet_notifications_add_javascript();
+  return theme('notifications_block', array('node_server' => $node_server_url));
 }
