@@ -9,6 +9,7 @@ var watch = require('gulp-watch');
 gulp.task('build', function () {
   browserify({
     entries: 'js/src/main.js',
+    extensions: ['.jsx'],
     debug: true
   })
   .transform(babelify)
