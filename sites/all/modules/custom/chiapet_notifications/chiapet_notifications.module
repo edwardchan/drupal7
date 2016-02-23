@@ -6,6 +6,31 @@
  */
 
 /**
+ * Implements hook_menu().
+ */
+function chiapet_notifications_menu() {
+  $items = array();
+  $items['admin/chiapet/notifications'] = array(
+    'title' => 'Admin Notifications',
+    'page callback' => 'chiapet_notifications_page',
+    'access callback' => 'chiapet_notifications_page_access',
+  );
+
+  return $items;
+}
+
+function chiapet_notifications_page_access() {
+  if (user_access('administer site configuration')) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function chiapet_notifications_page() {
+  return theme('notifications_page');
+}
+
+/**
  * Implements hook_block_info().
  */
 function chiapet_notifications_block_info() {
@@ -40,11 +65,17 @@ function chiapet_notifications_block_view($delta = '') {
 /**
  * Implements hook_theme().
  */
-function chiapet_notifications_theme() {
-  $module_path = drupal_get_path('module', 'chiapet_notifications') . '/templates';
+function chiapet_notifications_theme($existing, $type, $theme, $path) {
+  $module_path = drupal_get_path('module', 'chiapet_notifications');
+  $base = array(
+    'path' => "$module_path/templates",
+  );
+
   return array(
-    'notifications_block' => array(
-      'path' => $module_path,
+    'notifications_page' => $base + array(
+      'template' => 'chiapet_notifications_page',
+    ),
+    'notifications_block' => $base + array(
       'template' => 'chiapet_notifications',
       'variables' => array('items' => NULL),
     ),
