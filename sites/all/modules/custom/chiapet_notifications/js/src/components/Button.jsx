@@ -2,12 +2,21 @@
 
 import React from 'react';
 
-class Button extends React.Component {
+export default class Button extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {liked: false};
+  }
+  handleClick(event) {
+    this.setState({liked: !this.state.liked});
+  }
+
   render() {
+    var text = this.state.liked ? 'like' : 'haven\'t liked';
     return (
-      <div>
-        <a href="#">Button</a>
-      </div>
+      <p onClick={this.handleClick.bind(this)}>
+        You {text} this. Click to toggle.
+      </p>
     );
   }
 }
